@@ -13,6 +13,9 @@ export const Login = () => {
   const [role, setRole] = useState("");
 
   const handleLogin = async () => {
+    setUid("");
+    setRole("");
+
     try {
       const response = await signInWithEmailAndPassword(auth, email, password);
 
