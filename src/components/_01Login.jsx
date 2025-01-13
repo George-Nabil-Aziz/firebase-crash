@@ -8,7 +8,17 @@ export const Login = () => {
 
   const handleLogin = async () => {
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      const response = await signInWithEmailAndPassword(auth, email, password);
+      console.log("response", response);
+
+      // Chat GPT method to get token
+      const token = await response?.user?.getIdToken();
+      console.log("Token:", token);
+
+      // My method to get token
+      const tokenResponse = response?._tokenResponse?.idToken;
+      console.log("tokenResponse", tokenResponse);
+
       alert("Logged in successfully!");
     } catch (error) {
       alert(error.message);
