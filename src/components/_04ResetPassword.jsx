@@ -15,6 +15,8 @@ export const ResetPassword = () => {
       });
   };
 
+  // TODO: if change password from reset password, need to save it again in firebase
+
   return (
     <div>
       <h2>Reset Password</h2>
