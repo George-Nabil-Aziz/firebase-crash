@@ -4,24 +4,23 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
 
 export const Signup = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [role, setRole] = useState("user");
+  const [userData, setUserData] = useState({ role: "user" });
 
   const handleSignup = async () => {
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
-        email,
-        password
+        userData.email,
+        userData.password
       );
       alert("Account created successfully!");
 
       const user = userCredential.user;
       await setDoc(doc(db, "users", user.uid), {
-        email: user.email,
-        password: password,
-        role: role,
+        email: userData.email,
+        password: userData.password,
+        role: userData.role,
+        name: userData.name,
       });
     } catch (error) {
       alert(error.message);
@@ -33,18 +32,35 @@ export const Signup = () => {
       <h2>Signup Only</h2>
 
       <input
+        type="text"
+        placeholder="Name"
+        value={userData.name}
+        onChange={(e) =>
+          setUserData((prev) => ({ ...prev, name: e.target.value }))
+        }
+      />
+      <input
         type="email"
         placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        value={userData.email}
+        onChange={(e) =>
+          setUserData((prev) => ({ ...prev, email: e.target.value }))
+        }
       />
       <input
         type="password"
         placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        value={userData.password}
+        onChange={(e) =>
+          setUserData((prev) => ({ ...prev, password: e.target.value }))
+        }
       />
-      <select value={role} onChange={(e) => setRole(e.target.value)}>
+      <select
+        value={userData?.role}
+        onChange={(e) =>
+          setUserData((prev) => ({ ...prev, role: e.target.value }))
+        }
+      >
         <option value="user">User</option>
         <option value="admin">Admin</option>
       </select>
