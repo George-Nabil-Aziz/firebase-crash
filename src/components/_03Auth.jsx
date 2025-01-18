@@ -26,7 +26,7 @@ export const AuthComponent = () => {
 
   return (
     <div>
-      <h2>Auth</h2>
+      <h2>Simple Auth</h2>
 
       <input
         type="email"
