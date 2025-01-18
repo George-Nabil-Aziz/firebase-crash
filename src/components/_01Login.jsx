@@ -7,36 +7,38 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 
 export const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [uid, setUid] = useState("");
-  const [role, setRole] = useState("");
+  const [userData, setUserData] = useState({});
 
   const handleLogin = async () => {
-    setUid("");
-    setRole("");
+    localStorage.removeItem("UserData");
 
     try {
-      const response = await signInWithEmailAndPassword(auth, email, password);
-
-      // Chat GPT: Get token
-      const token = await response?.user?.getIdToken();
+      const response = await signInWithEmailAndPassword(
+        auth,
+        userData.email,
+        userData.password
+      );
 
       // My: Get token
       const tokenResponse = response?._tokenResponse?.idToken;
-
-      setUid(response?.user?.uid);
+      // Chat GPT: Get token
+      const token = await response?.user?.getIdToken();
 
       // Fetch the role from Firestore
       const docRef = doc(db, "users", response?.user.uid);
       const docSnap = await getDoc(docRef);
       const role = docSnap?.data()?.role;
 
-      if (docSnap.exists()) {
-        if (role === "admin") setRole("Admin");
-        else if (role === "user") setRole("User");
-        else setRole("Role not defined");
-      } else setRole("No role found");
+      // Save to localStorage
+      localStorage.setItem(
+        "UserData",
+        JSON.stringify({
+          uid: response?.user?.uid,
+          tokenMy: tokenResponse,
+          tokenGPT: token,
+          role: docSnap.exists() ? role ?? "Not defined" : "Not exist",
+        })
+      );
 
       alert("Logged in successfully!");
     } catch (error) {
@@ -51,23 +53,20 @@ export const Login = () => {
       <input
         type="email"
         placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        value={userData.email}
+        onChange={(e) =>
+          setUserData((prev) => ({ ...prev, email: e.target.value }))
+        }
       />
       <input
         type="password"
         placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        value={userData.password}
+        onChange={(e) =>
+          setUserData((prev) => ({ ...prev, password: e.target.value }))
+        }
       />
       <button onClick={handleLogin}>Login</button>
-
-      {uid && (
-        <div>
-          <p>uid: {uid}</p>
-          <p>role: {role}</p>
-        </div>
-      )}
     </div>
   );
 };
