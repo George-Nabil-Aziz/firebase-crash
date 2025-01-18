@@ -1,6 +1,10 @@
-import React from "react";
+// React
 import ReactDOM from "react-dom/client";
+
+// Styles
 import "./index.css";
+
+// Context
 
 // Authentication
 import { Login } from "./components/_01Login.jsx";
