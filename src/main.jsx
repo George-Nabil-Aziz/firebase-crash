@@ -1,10 +1,13 @@
 // React
+import React from "react";
 import ReactDOM from "react-dom/client";
 
 // Styles
 import "./index.css";
 
 // Context
+import { MyProvider } from "./context/provider.jsx";
+import { Context } from "./components/_00Context.jsx";
 
 // Authentication
 import { Login } from "./components/_01Login.jsx";
@@ -24,33 +27,40 @@ import { View } from "./components/_21View.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    {/* Authentication */}
-    <Login />
-    <hr />
-    <Signup />
-    <hr />
-    <AuthComponent />
-    <hr />
-    <ResetPassword />
-    <hr />
-    <DeleteUser />
-    <hr />
-    <hr />
+    <MyProvider>
+      {/* Context */}
+      <Context />
+      <hr />
+      <hr />
 
-    {/* View */}
-    <View />
-    <hr />
-    <hr />
+      {/* Authentication */}
+      <Login />
+      <hr />
+      <Signup />
+      <hr />
+      <AuthComponent />
+      <hr />
+      <ResetPassword />
+      <hr />
+      <DeleteUser />
+      <hr />
+      <hr />
 
-    {/* Methods */}
-    <SaveNumber value={2} />
-    <hr />
-    <RestoreNumber />
-    <hr />
-    <DeleteNumber />
-    <hr />
-    <RestoreSpecificId />
-    <hr />
-    <hr />
+      {/* View */}
+      <View />
+      <hr />
+      <hr />
+
+      {/* Methods */}
+      <SaveNumber value={2} />
+      <hr />
+      <RestoreNumber />
+      <hr />
+      <DeleteNumber />
+      <hr />
+      <RestoreSpecificId />
+      <hr />
+      <hr />
+    </MyProvider>
   </React.StrictMode>
 );
