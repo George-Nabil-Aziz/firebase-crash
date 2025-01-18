@@ -15,8 +15,12 @@ import { RestoreNumber } from "./components/_12RestoreNumber.jsx";
 import { DeleteNumber } from "./components/_13DeleteNumber.jsx";
 import { RestoreSpecificId } from "./components/_14RestoreSpecificId.jsx";
 
+// View
+import { View } from "./components/_21View.jsx";
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    {/* Authentication */}
     <Login />
     <hr />
     <Signup />
@@ -29,6 +33,12 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <hr />
     <hr />
 
+    {/* View */}
+    <View />
+    <hr />
+    <hr />
+
+    {/* Methods */}
     <SaveNumber value={2} />
     <hr />
     <RestoreNumber />
@@ -36,6 +46,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <DeleteNumber />
     <hr />
     <RestoreSpecificId />
+    <hr />
     <hr />
   </React.StrictMode>
 );
