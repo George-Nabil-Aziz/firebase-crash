@@ -22,9 +22,17 @@ export const Logout = () => {
     }
   };
 
+  const handleGetAuth = () => {
+    console.log("currentUser", auth.currentUser);
+    console.log("uid", auth.currentUser.uid);
+    console.log("accessToken", auth.currentUser.accessToken);
+    console.log("email", auth.currentUser.email);
+  };
+
   return (
     <>
       <h2>Logout</h2>
+      <button onClick={handleGetAuth}>getAuth()</button>
       <button onClick={handleLogout}>Logout</button>
     </>
   );
