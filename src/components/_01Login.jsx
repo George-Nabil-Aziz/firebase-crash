@@ -1,5 +1,8 @@
 // React
-import { useState } from "react";
+import { useContext } from "react";
+
+// Context
+import { MyContext } from "../context/provider";
 
 // Firebase
 import { auth, db } from "../firebase";
@@ -7,7 +10,8 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 
 export const Login = () => {
-  const [userData, setUserData] = useState({});
+  // Context
+  const { userData, setUserData } = useContext(MyContext);
 
   const handleLogin = async () => {
     localStorage.removeItem("UserData");
@@ -29,16 +33,16 @@ export const Login = () => {
       const docSnap = await getDoc(docRef);
       const role = docSnap?.data()?.role;
 
+      const userDataResponse = {
+        uid: response?.user?.uid,
+        tokenMy: tokenResponse,
+        tokenGPT: token,
+        role: docSnap.exists() ? role ?? "Not defined" : "Not exist",
+      };
+
       // Save to localStorage
-      localStorage.setItem(
-        "UserData",
-        JSON.stringify({
-          uid: response?.user?.uid,
-          tokenMy: tokenResponse,
-          tokenGPT: token,
-          role: docSnap.exists() ? role ?? "Not defined" : "Not exist",
-        })
-      );
+      localStorage.setItem("UserData", JSON.stringify(userDataResponse));
+      setUserData(userDataResponse);
 
       alert("Logged in successfully!");
     } catch (error) {

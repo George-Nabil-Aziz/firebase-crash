@@ -10,16 +10,7 @@ export const Context = () => {
   return (
     <>
       <div onClick={() => console.log(userData)}>userData</div>
-      <div
-        onClick={() =>
-          setUserData({
-            teda: "Bye Teda",
-            pooh: "Bye Pooh",
-          })
-        }
-      >
-        setUserData
-      </div>
+      <div onClick={() => setUserData({})}>setUserData</div>
       <div></div>
     </>
   );

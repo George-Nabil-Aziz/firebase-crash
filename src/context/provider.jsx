@@ -3,10 +3,7 @@ import { useState, createContext } from "react";
 export const MyContext = createContext();
 
 export const MyProvider = ({ children }) => {
-  const [userData, setUserData] = useState({
-    teda: "Hello Teda",
-    pooh: "Hello Pooh",
-  });
+  const [userData, setUserData] = useState({});
 
   return (
     <MyContext.Provider value={{ userData, setUserData }}>

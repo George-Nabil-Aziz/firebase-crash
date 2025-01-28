@@ -15,6 +15,7 @@ import { Signup } from "./components/_02Signup.jsx";
 import { AuthComponent } from "./components/_03Auth.jsx";
 import { ResetPassword } from "./components/_04ResetPassword.jsx";
 import { DeleteUser } from "./components/_05Delete.jsx";
+import { Logout } from "./components/_06Logout.jsx";
 
 // Methods
 import { SaveNumber } from "./components/_11SaveNumber.jsx";
@@ -43,6 +44,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <ResetPassword />
       <hr />
       <DeleteUser />
+      <hr />
+      <Logout />
       <hr />
       <hr />
 
