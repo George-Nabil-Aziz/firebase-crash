@@ -13,7 +13,6 @@ export const Logout = () => {
   const auth = getAuth(); // Initialize Firebase Auth
 
   const handleLogout = async () => {
-    console.log(auth);
     try {
       await signOut(auth);
       alert("User logged out successfully.");
