@@ -1,8 +1,5 @@
 // React
-import { useContext } from "react";
-
-// Context
-import { MyContext } from "../context/provider";
+import { useState } from "react";
 
 // Firebase
 import { auth, db } from "../firebase";
@@ -11,11 +8,9 @@ import { doc, getDoc } from "firebase/firestore";
 
 export const Login = () => {
   // Context
-  const { userData, setUserData } = useContext(MyContext);
+  const [userData, setUserData] = useState({});
 
   const handleLogin = async () => {
-    localStorage.removeItem("UserData");
-
     try {
       const response = await signInWithEmailAndPassword(
         auth,
@@ -42,7 +37,6 @@ export const Login = () => {
 
       // Save to localStorage
       localStorage.setItem("UserData", JSON.stringify(userDataResponse));
-      setUserData(userDataResponse);
 
       alert("Logged in successfully!");
     } catch (error) {

@@ -16,6 +16,8 @@ import { AuthComponent } from "./components/_03Auth.jsx";
 import { ResetPassword } from "./components/_04ResetPassword.jsx";
 import { DeleteUser } from "./components/_05Delete.jsx";
 import { Logout } from "./components/_06Logout.jsx";
+import { UserData } from "./components/_07UserData.jsx";
+import { Token } from "./components/_08Token.jsx";
 
 // Methods
 import { SaveNumber } from "./components/_11SaveNumber.jsx";
@@ -46,6 +48,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <DeleteUser />
       <hr />
       <Logout />
+      <hr />
+      <UserData />
+      <hr />
+      <Token />
       <hr />
       <hr />
 

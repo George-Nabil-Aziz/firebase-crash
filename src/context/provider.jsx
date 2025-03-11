@@ -3,10 +3,23 @@ import { useState, createContext } from "react";
 export const MyContext = createContext();
 
 export const MyProvider = ({ children }) => {
-  const [userData, setUserData] = useState({});
+  const [iAmAuthLocalFirebaseFile, setIAmAuthLocalFirebaseFile] = useState({});
+  const [iAmAuthGetAuth, setIAmAuthGetAuth] = useState({});
+  const [iAmAuthOnAuthStateChanged, setiAmAuthOnAuthStateChanged] = useState(
+    {}
+  );
 
   return (
-    <MyContext.Provider value={{ userData, setUserData }}>
+    <MyContext.Provider
+      value={{
+        iAmAuthGetAuth,
+        setIAmAuthGetAuth,
+        iAmAuthLocalFirebaseFile,
+        setIAmAuthLocalFirebaseFile,
+        iAmAuthOnAuthStateChanged,
+        setiAmAuthOnAuthStateChanged,
+      }}
+    >
       {children}
     </MyContext.Provider>
   );
