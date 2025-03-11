@@ -18,15 +18,17 @@ import { DeleteUser } from "./components/_05Delete.jsx";
 import { Logout } from "./components/_06Logout.jsx";
 import { UserData } from "./components/_07UserData.jsx";
 import { Token } from "./components/_08Token.jsx";
-
-// Methods
-import { SaveNumber } from "./components/_11SaveNumber.jsx";
-import { RestoreNumber } from "./components/_12RestoreNumber.jsx";
-import { DeleteNumber } from "./components/_13DeleteNumber.jsx";
-import { RestoreSpecificId } from "./components/_14RestoreSpecificId.jsx";
+import { UpdateProfile } from "./components/_09UpdateProfile.jsx";
+import { VerifyPhoneNumber } from "./components/_10VerifyPhoneNumber.jsx";
 
 // View
 import { View } from "./components/_21View.jsx";
+
+// Methods
+import { SaveNumber } from "./components/_51SaveNumber.jsx";
+import { RestoreNumber } from "./components/_52RestoreNumber.jsx";
+import { DeleteNumber } from "./components/_53DeleteNumber.jsx";
+import { RestoreSpecificId } from "./components/_54RestoreSpecificId.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -52,6 +54,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <UserData />
       <hr />
       <Token />
+      <hr />
+      <UpdateProfile />
+      <hr />
+      <VerifyPhoneNumber />
       <hr />
       <hr />
 
